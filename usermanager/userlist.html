@@ -232,6 +232,16 @@
           ,maxmin: true
           ,area: ['550px', '550px']
           ,btn: ['确定', '取消']
+          ,success: function (layero, index) {
+            var body = layer.getChildFrame('body', index);
+            body.contents().find("input[name=name]").val(data.name);
+            body.contents().find("input[name=age]").val(data.age);
+            body.contents().find("input[name=loginName]").val(data.loginName);
+            body.contents().find("input[name=pwd]").val(data.pwd);
+            body.contents().find("input[name=dept]").val(data.dept);
+            body.contents().find("input[name=sex]").val(data.sex);
+            body.contents().find("input[name=mail]").val(data.mail);
+          }
           ,yes: function(index, layero){
             var iframeWindow = window['layui-layer-iframe'+ index]
                     ,submit = layero.find('iframe').contents().find("#layuiadmin-app-form-edit");
