@@ -242,11 +242,19 @@
 
               //提交 Ajax 成功后，静态更新表格中的数据
               //$.ajax({});
+              $.ajax({
+                url:"http://localhost:8080/user/updateUser",
+                type:'post',
+                data:field
+              })
               obj.update({
-                label: field.label
-                ,title: field.title
-                ,author: field.author
-                ,status: field.status
+                name: field.name
+                ,age: field.age
+                ,loginName: field.loginName
+                ,pwd: field.pwd
+                ,dept: field.dept
+                ,sex: field.sex
+                ,mail: field.mail
               }); //数据更新
 
               form.render();
