@@ -14,40 +14,45 @@
 
   <div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list" style="padding: 20px 30px 0 0;">
     <div class="layui-form-item">
-      <label class="layui-form-label">文章标题</label>
+      <label class="layui-form-label">姓名</label>
       <div class="layui-input-inline">
-        <input type="text" name="title" lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+        <input type="text" name="name" lay-verify="required" placeholder="请输入用户姓名" autocomplete="off" class="layui-input">
       </div>
     </div>
     <div class="layui-form-item">
-      <label class="layui-form-label">发布人</label>
+      <label class="layui-form-label">年龄</label>
       <div class="layui-input-inline">
-        <input type="text" name="author" lay-verify="required" placeholder="请输入号码" autocomplete="off" class="layui-input">
+        <input type="text" name="age" lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
       </div>
     </div>
     <div class="layui-form-item">
-      <label class="layui-form-label">文章内容</label>
+      <label class="layui-form-label">登录名</label>
       <div class="layui-input-inline">
-        <textarea name="content" lay-verify="required" style="width: 400px; height: 150px;" autocomplete="off" class="layui-textarea"></textarea>
+        <input type="text" name="loginName" lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
       </div>
     </div>
     <div class="layui-form-item">
-      <label class="layui-form-label">标签</label>
+      <label class="layui-form-label">密码</label>
       <div class="layui-input-inline">
-        <select name="label" lay-verify="required">
-          <option value="">请选择标签</option>
-          <option value="美食">美食</option>
-          <option value="新闻">新闻</option>
-          <option value="八卦">八卦</option>
-          <option value="体育">体育</option>
-          <option value="音乐">音乐</option>
-        </select>
+        <input type="password" name="pwd" lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
       </div>
     </div>
     <div class="layui-form-item">
-      <label class="layui-form-label">发布状态</label>
+      <label class="layui-form-label">部门</label>
       <div class="layui-input-inline">
-        <input type="checkbox" lay-verify="required" lay-filter="status" name="status" lay-skin="switch" lay-text="已发布|待修改">
+        <input type="text" name="dept" lay-verify="required" placeholder="请输入部门" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">性别</label>
+      <div class="layui-input-inline">
+        <input type="text" name="sex" lay-verify="required" placeholder="请输入性别" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">邮箱</label>
+      <div class="layui-input-inline">
+        <input type="text" name="mail" lay-verify="required" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
       </div>
     </div>
     <div class="layui-form-item layui-hide">
@@ -68,11 +73,13 @@
     
     //监听提交
     form.on('submit(layuiadmin-app-form-submit)', function(data){
-      var field = data.field; //获取提交的字段
-      var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引  
-
-      //提交 Ajax 成功后，关闭当前弹层并重载表格
-      //$.ajax({});
+      var user = data.field; //获取提交的字段
+      var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+      $.ajax({
+        url:"http://localhost:8080/user/addUser",
+        type:'post',
+        data:user
+      })
       parent.layui.table.reload('LAY-app-content-list'); //重载表格
       parent.layer.close(index); //再执行关闭 
     });
