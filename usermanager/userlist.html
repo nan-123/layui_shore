@@ -234,6 +234,7 @@
           ,btn: ['确定', '取消']
           ,success: function (layero, index) {
             var body = layer.getChildFrame('body', index);
+            body.contents().find("input[name=id]").val(data.id);
             body.contents().find("input[name=name]").val(data.name);
             body.contents().find("input[name=age]").val(data.age);
             body.contents().find("input[name=loginName]").val(data.loginName);
@@ -248,23 +249,22 @@
 
             //监听提交
             iframeWindow.layui.form.on('submit(layuiadmin-app-form-edit)', function(data){
-              var field = data.field; //获取提交的字段
-
+              var user = data.field; //获取提交的字段
               //提交 Ajax 成功后，静态更新表格中的数据
               //$.ajax({});
               $.ajax({
                 url:"http://localhost:8080/user/updateUser",
                 type:'post',
-                data:field
+                data:user
               })
               obj.update({
-                name: field.name
-                ,age: field.age
-                ,loginName: field.loginName
-                ,pwd: field.pwd
-                ,dept: field.dept
-                ,sex: field.sex
-                ,mail: field.mail
+                name: user.name
+                ,age: user.age
+                ,loginName: user.loginName
+                ,pwd: user.pwd
+                ,dept: user.dept
+                ,sex: user.sex
+                ,mail: user.mail
               }); //数据更新
 
               form.render();
