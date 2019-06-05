@@ -195,7 +195,7 @@
     table.on('tool(LAY-app-content-list)', function(obj){
       var data = obj.data;
       if(obj.event === 'del'){
-        layer.confirm('确定删除此文章？', function(index){
+        layer.confirm('确定删除用户？', function(index){
           $.ajax({
             url:'http://localhost:8080/user/delUser?id='+data.id,
           })
