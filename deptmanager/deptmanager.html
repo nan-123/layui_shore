@@ -51,8 +51,8 @@ layui.use(['form', 'treetable', 'layer'], function() {
     })
     form.render();
 
-    $(function(){
-   //输入框的值改变时触发
+
+   //输入框失去焦点时触发
   $("#search").blur(function(){
       var name = $("#search").val();
       
@@ -72,8 +72,6 @@ layui.use(['form', 'treetable', 'layer'], function() {
   })
 
   });
-});
-
 });
 
 </script>
